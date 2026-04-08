@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratika Ashra - Data Strategist & Storyteller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FDFCFA;
+    --ink: #1C1A17;
+    --ink-soft: #3D3A35;
+    --ink-muted: #7A7569;
+    --terracotta: #C4614A;
+    --terracotta-light: #F0DDD8;
+    --sage: #7A9E7E;
+    --sage-light: #E8F0E9;
+    --sand: #E8D9C4;
+    --border: rgba(28,26,23,0.1);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 5%;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5% 5rem;
+    gap: 4rem;
+  }
+  .hero-text { max-width: 560px; }
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+  .hero-tagline {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+  }
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--terracotta); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .hero-card-stack { position: relative; width: 320px; height: 380px; }
+  .hero-card {
+    position: absolute;
+    border-radius: 4px;
+    padding: 2rem;
+  }
+  .hero-card-bg {
+    width: 280px; height: 340px;
+    background: var(--sand);
+    top: 20px; left: 20px;
+    transform: rotate(3deg);
+  }
+  .hero-card-main {
+    width: 280px; height: 340px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    top: 0; left: 0;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .card-location {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .card-middle { }
+  .card-middle p {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .card-middle p em { color: var(--terracotta); font-style: italic; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    border-radius: 2px;
+    background: var(--terracotta-light);
+    color: var(--terracotta);
+  }
+  .tag.sage { background: var(--sage-light); color: var(--sage); }
+
+  /* SECTIONS */
+  section { padding: 6rem 5%; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .section-header { margin-bottom: 3.5rem; }
+
+  /* ABOUT */
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .stat-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* SKILLS */
+  .skills-bg { background: var(--warm-white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .skill-block {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+  .skill-block:hover { border-color: var(--terracotta); }
+  .skill-icon {
+    width: 36px; height: 36px;
+    background: var(--terracotta-light);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .skill-icon svg { width: 18px; height: 18px; stroke: var(--terracotta); fill: none; stroke-width: 1.5; }
+  .skill-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .skill-tools {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  /* EXPERIENCE */
+  .experience-list { max-width: 720px; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    padding-top: 0.25rem;
+    font-weight: 400;
+  }
+  .exp-content {}
+  .exp-role {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .exp-company {
+    font-size: 0.875rem;
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .exp-desc {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .project-card:hover { border-color: var(--terracotta); transform: translateY(-2px); }
+  .project-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    background: var(--sage-light);
+    color: var(--sage);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .stack-pill {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--ink-muted);
+  }
+  .project-coming {
+    opacity: 0.55;
+  }
+  .coming-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    background: var(--terracotta-light);
+    color: var(--terracotta);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  /* CONTENT BRAND */
+  .brand-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .brand-text p {
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    line-height: 1.85;
+  }
+  .brand-visual {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .brand-logo-text {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--terracotta);
+    margin-bottom: 0.5rem;
+  }
+  .brand-handle {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+  }
+  .brand-topics { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+
+  /* CONTACT */
+  .contact-bg { background: var(--ink); }
+  .contact-bg .section-label { color: var(--terracotta); }
+  .contact-bg .section-title { color: var(--cream); }
+  .contact-bg .section-subtitle { color: rgba(250,247,242,0.6); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(250,247,242,0.12);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--cream);
+    font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--terracotta); background: rgba(196,97,74,0.08); }
+  .contact-link-label { color: rgba(250,247,242,0.5); font-size: 0.75rem; margin-bottom: 0.1rem; }
+  .contact-link-value { color: var(--cream); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(250,247,242,0.08);
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-size: 0.8rem; color: rgba(250,247,242,0.35); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 5%;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-name { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-tagline { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-bio { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-cta { animation: fadeUp 0.6s 0.4s ease both; }
+  .hero-visual { animation: fadeUp 0.8s 0.3s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-visual { display: none; }
+    .about-inner, .brand-inner, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Pratika Ashra</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Data Strategist · ASU '26 · Based in Tempe, AZ</p>
+    <h1 class="hero-name">Hi, I'm <em>Pratika</em> —<br>I find the human<br>story in data.</h1>
+    <p class="hero-tagline">Business analyst, behavioral thinker,<br>and chronic overthinker of consumer decisions.</p>
+    <p class="hero-bio">I'm a Business Data Analytics student at Arizona State University who believes the best insights aren't just about numbers, they're about understanding why people do what they do. I combine data analysis with behavioral economics, marketing intuition, and a genuine love for strategy.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Let's Connect</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="hero-card hero-card-bg"></div>
+      <div class="hero-card hero-card-main">
+        <div class="card-middle">
+          <p>Turning messy data into<em> clear decisions.</em></p>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Tableau</span>
+          <span class="tag sage">Strategy</span>
+          <span class="tag sage">Behavioral Econ</span>
+          <span class="tag">SQL</span>
+          <span class="tag sage">Fashion Analytics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">More than a<br>data analyst.</h2>
+  </div>
+  <div class="about-inner">
+    <div class="about-text">
+      <p>I grew up in India and moved to the US for college, a decision that gave me a firsthand understanding of how culture, context, and behavior shape every business outcome. That curiosity is at the core of everything I do.</p>
+      <p>My background sits at the intersection of data analytics, economics, and human psychology. I don't just analyze what happened, I want to understand why it happened, and what it means for what comes next.</p>
+      <p>Outside of work and studies, I make content on Instagram, <strong>Pia's Point of View</strong> where I write and create about behavioral economics, mindset, and everyday decision-making.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">3.70+</div>
+        <div class="stat-label">GPA at Arizona State University</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4×</div>
+        <div class="stat-label">Dean's List recognition</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">87%</div>
+        <div class="stat-label">Model accuracy, LAX traffic prediction project</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">192M+</div>
+        <div class="stat-label">Passenger records analyzed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="section-header">
+    <p class="section-label">Skills & Tools</p>
+    <h2 class="section-title">How I work.</h2>
+    <p class="section-subtitle">A toolkit built across real projects, internships, and a genuine obsession with understanding systems.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <div class="skill-name">Data Analysis & Visualization</div>
+      <div class="skill-tools">Python · SQL · Excel (Advanced) · Tableau · Power BI · Microsoft Fabric</div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="skill-name">Business & Strategy Analytics</div>
+      <div class="skill-tools">KPI Development · Performance Dashboards · Forecasting · Process Improvement · Stakeholder Reporting</div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="skill-name">Behavioral & Market Research</div>
+      <div class="skill-tools">Consumer Behavior · Behavioral Economics · Regression Analysis · Survey Design · A/B Testing</div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="skill-name">Communication & Storytelling</div>
+      <div class="skill-tools">Data Storytelling · Presentation Design · Business Writing · Content Creation · Social Media Strategy</div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      </div>
+      <div class="skill-name">Marketing Analytics</div>
+      <div class="skill-tools">Campaign Analysis · Engagement Metrics · Social Media Analytics · Content Strategy · Brand Growth</div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <div class="skill-name">Cross-functional Collaboration</div>
+      <div class="skill-tools">Stakeholder Management · Intercultural Communication · Team Leadership · Project Coordination · Agile</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've worked.</h2>
+  </div>
+  <div class="experience-list">
+    <div class="exp-item">
+      <div class="exp-date">Sep 2025 – Dec 2025</div>
+      <div class="exp-content">
+        <div class="exp-role">Finance & Economics Teaching Fellow</div>
+        <div class="exp-company">Arizona State University</div>
+        <div class="exp-desc">Tracked and analyzed academic performance data for 60 students, identifying high-difficulty topics and learning gaps. Used data insights to adjust instructional strategies, resulting in improved student grades and engagement.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">May 2023 – Aug 2023</div>
+      <div class="exp-content">
+        <div class="exp-role">Operations Analyst Intern</div>
+        <div class="exp-company">Audi - New Delhi, India</div>
+        <div class="exp-desc">Analyzed city-wise and salesperson-level sales performance using Python and Excel. Conducted regression analysis to identify performance drivers, and built dashboards in Tableau to improve operational visibility and support managerial decision-making.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Aug 2023 – Oct 2024</div>
+      <div class="exp-content">
+        <div class="exp-role">Program Assistant</div>
+        <div class="exp-company">University College, Arizona State University</div>
+        <div class="exp-desc">Collected and analyzed student engagement data across thousands of participants using Excel and Tableau. Synthesized program metrics into visual summaries enabling leadership to showcase outcomes on the university website.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2024 – May 2024</div>
+      <div class="exp-content">
+        <div class="exp-role">Trademarks & Licensing Marketing Assistant</div>
+        <div class="exp-company">Arizona State University</div>
+        <div class="exp-desc">Analyzed engagement metrics across Instagram, Facebook, LinkedIn, and X to identify optimal content strategies. Managed brand partnerships with Adidas, Lululemon, and Hollister, achieving a reach of 2,392 accounts and growing followers by 300–500.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="skills-bg">
+  <div class="section-header">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Things I've built.</h2>
+    <p class="section-subtitle">A mix of academic projects and independent work, with more coming soon.</p>
+  </div>
+  <div class="projects-grid">
+    <a href="#" class="project-card">
+      <span class="project-tag">Data Analysis</span>
+      <h3 class="project-title">LAX Terminal Traffic Prediction</h3>
+      <p class="project-desc">Analyzed 192M+ passenger records to develop predictive models with 87% accuracy, achieving a 15% improvement in terminal efficiency and 20% reduction in peak-hour congestion.</p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Tableau</span>
+        <span class="stack-pill">Machine Learning</span>
+      </div>
+    </a>
+    <a href="#" class="project-card">
+      <span class="project-tag">Business Analytics</span>
+      <h3 class="project-title">Northwind Sales Analysis</h3>
+      <p class="project-desc">Led a team of 5 to analyze 3 years of sales data across 9 countries. Improved revenue forecasting accuracy by 20% and optimized supply chain efficiency during peak months.</p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Tableau</span>
+        <span class="stack-pill">Excel</span>
+      </div>
+    </a>
+    <div class="project-card project-coming">
+      <span class="coming-badge">Coming Soon</span>
+      <h3 class="project-title">Fast Fashion Pricing & Consumer Behavior</h3>
+      <p class="project-desc">Analyzing pricing patterns across fast fashion brands through a behavioral economics lens, exploring why consumers buy trend items they'll rarely wear.</p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Tableau</span>
+        <span class="stack-pill">Regression Analysis</span>
+      </div>
+    </div>
+    <div class="project-card project-coming">
+      <span class="coming-badge">Coming Soon</span>
+      <h3 class="project-title">Fashion Trend Forecasting Model</h3>
+      <p class="project-desc">Using Google Trends and social data to build a predictive model around fashion trend cycles, what makes an item go viral, and when.</p>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Google Trends API</span>
+        <span class="stack-pill">ML</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT BRAND -->
+<section id="brand">
+  <div class="section-header">
+    <p class="section-label">Content & Brand</p>
+    <h2 class="section-title">Pia's Point of View.</h2>
+  </div>
+  <div class="brand-inner">
+    <div class="brand-text">
+      <p>Beyond the data work, I create content that sits at the intersection of behavioral economics, everyday psychology, and the things I genuinely find fascinating about how people think and make decisions.</p>
+      <p>Pia's Point of View is my space to explore ideas that don't fit neatly into a spreadsheet: consumer culture, the psychology behind trends, why we buy what we buy, and how to think more clearly in a noisy world.</p>
+      <p>I'm open to brand partnerships and collaborations that align with themes of learning, lifestyle, and thoughtful consumption.</p>
+      <a href="#contact" class="btn-primary" style="margin-top: 0.5rem; display: inline-block;">Work with me →</a>
+    </div>
+    <div class="brand-visual">
+      <div class="brand-logo-text">Pia's Point of View</div>
+      <div class="brand-handle">@piaspointofview</div>
+      <div class="brand-topics">
+        <span class="tag">Behavioral Economics</span>
+        <span class="tag sage">Psychology</span>
+        <span class="tag">Consumer Culture</span>
+        <span class="tag sage">Fashion & Trends</span>
+        <span class="tag">Decision Making</span>
+        <span class="tag sage">Mindset</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's talk.</h2>
+      <p class="section-subtitle">I'm open to full-time roles in business analytics, strategy, and marketing as well as brand collaborations and research opportunities.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:pashra@asu.edu" class="contact-link">
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">pashra@asu.edu</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/pratikaashraasu" target="_blank" class="contact-link">
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">linkedin.com/in/pratikaashraasu</div>
+        </div>
+      </a>
+      <a href="https://github.com" target="_blank" class="contact-link">
+        <div>
+          <div class="contact-link-label">GitHub</div>
+          <div class="contact-link-value">github.com/pratikaashra</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Pratika Ashra. Built with intention.</p>
+  <p>Tempe, AZ → Wherever the work takes me.</p>
+</footer>
+
+</body>
+</html>
